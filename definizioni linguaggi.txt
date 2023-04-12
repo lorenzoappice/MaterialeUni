@@ -1,0 +1,36 @@
+Un alfabeto X è un insieme finito e non vuoto di simboli.
+
+X* è l'insieme di tutte le stringhe di lunghezza finita di un alfabeto X.
+
+Sia delta € X*. se delta = alfa beta, con alfa, beta € X*, allora alfa è detto prefisso di delta e beta è detto suffisso di delta.
+
+Sia delta € X*. se delta = alfa beta gamma, con alfa, beta, gamma € X*, allora beta è detta sottostringa di delta.
+
+Una grammatica è una quintupla G = (X, V, S, P) con:
+X alfabeto di simboli terminali,
+V insieme finito di simboli nonterminali/variabili
+S simbolo di partenza per ogni derivazione di G,
+P insieme di produzioni espresse in maniera formale,
+X intersecato V = insieme vuoto (X e V disgiunti), S € V.
+
+Una produzione è una coppia (v, w) indicata con v->w dove v € (X U V)+  e  w € (X U V)* .
+
+Una grammatica è detta libera da contesto se ogni sua produzione v->w è tale che v è un simbolo nonterminale.
+
+Un linguaggio è detto libero da contesto se può essere generato da una grammatica libero da contesto.
+
+Una grammatica è detta monotona se ogni sua produzione v->w è tale che |v| <= |w|.
+
+Un linguaggio è detto monotono se può essere generato da una grammatica monotona.
+
+Due grammatiche G e G' sono dette equivalenti se L(G) = L(G').
+
+
+Sia G una grammatica. Data una derivazione S =*> w, S => w1 => w2 => ... => wn = w, con:
+wi = xiAzi, wi+1 = xiwizi, se per ogni i , con i = 1,2,..,n-1,  xi/zi € X*, allora essa è detta derivazione destra/sinistra, ovvero una derivazione in cui ad ogni passo viene sempre espanso il nonterminale più a destra/sinistra.
+
+Sia L un linguaggio libero da contesto. Allora esiste una costante naturale p, dipendente solo da L,  tale che:
+Se per ogni z € L, |z| > p, allora z = uvwxy e:
+1) |vwx| <= p
+2) vx != lambda
+3) per ogni i >= 0, uviwxiy € L

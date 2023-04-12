@@ -1,0 +1,116 @@
+L={w€X*| w=a^nb^m, m>n>0} = { w€X*| w=a^n b^n b^m, n > 0, m > 0 }  stabilire se L è libero, Giustificare formalmente la precedente risposta.
+L è un linguaggio libero poichè può essere generato da una grammatica libera da contesto. La grammatica in questione è: G = ({a, b}, {S, A, B}, S, {
+	S -> AB
+	A -> ab | aAb
+	B -> b | bB }).
+
+
+
+Esercizio #1
+Sia data la seguente grammatica G=(X,V,S,P)
+X={0,1} V={S,A,B} 
+P={ 
+SA|B,
+AB|0A1,
+B0|0B }
+Determinare L(G).
+Di che tipo è G? Motivare la risposta.
+Costruire un albero di derivazione per la parola z=000011 e
+ determinare l’altezza
+
+
+Alcuni stringhe derivabili dalla grammatica G sono:
+0 (S => B => 0)
+000
+0000
+001
+00011
+
+Di conseguenza il linguaggio generato dalla grammatica G, L(G) è :
+L(G) = { w€X* | w = 0^m 1^n, m > n >= 0 }
+
+G è una grammatica libera da contesto in quanto ogni sua produzione all'interno di P è nella forma v->w con v simbolo nonterminale.
+
+z=000011
+
+T = 
+	S 
+	A
+    / | \
+    0 A 1
+	|
+    / | \
+   0	A  1
+	|
+	B
+    /   \
+   0     B
+	   |
+         0
+
+L'altezza dell'albero T è 6, ovvero la lunghezza del cammino più lungo dalla radice ad un nonterminale.
+
+
+Stabilire se il seguente linguaggio
+L={a^i b^j c^k |  0≤i≤j≤k}
+è libero da contesto 
+Giustificare formalmente la risposta.
+
+ Pumping lemma definizione...
+
+Consideriamo quindi la stringa z = a^p b^p c^p.
+Abbiamo quindi cinque possibili casi riguardo la composizione di vwx:
+
+1) vwx = a^s, con  1 <= s <= p
+2) vwx = b^s, con  1 <= s <= p
+3) vwx = c^s, con  1 <= s <= p
+4) vwx = a^s b^t con 2 <= s+t <= p , 1 <= s <= p,  1 <= t <= p
+5) vwx = b^s c^t con 2 <= s+t <= p , 1 <= s <= p,  1 <= t <= p
+
+
+1) in breve: pompiamo la stringa di base, poichè abbiamo un vincolo superiore i <= j. (stringa pompata uv2wx2y = a^p+s b^p c^p, 1 <= s <= p)
+	In questo modo avremmo una stringa con più a che b, rompendo il vincolo quantitativo, e vando la stringa 	pompata non app. ad L.
+2) in breve: pompiamo la stringa di base, poichè abbiamo un vincolo superiore j <= k. (stringa pompata uv2wx2y = a^p b^p+s c^p, 1 <= s <= p)
+	In questo modo avremmo una stringa con più b che c, rompendo il vincolo quantitativo, e vando la stringa 	pompata non app. ad L.
+3) in breve: depompiamo la stringa di base, poichè abbiamo un vincolo inferiore j <= k. (stringa depompata uv2wx2y = a^p b^p c^p-s, 1 <= s <= p)
+	In questo modo avremmo una stringa con più b che c, rompendo il vincolo quantitativo, e vando la stringa 	depompata non app. ad L.
+4) in breve: 
+	In questo caso abbiamo, per la 2) del pumping lemma, abbiamo tre ulteriori sottocasi:
+	i) v != lambda e x = lambda
+	ii) v = lambda e x != lambda
+	iii) v != lambda e x != lambda
+	
+	i) nel caso in cui v != lambda avremmo che v è formata da sole a. questo perche, prendendo la stringa pompata ... avremmo che se v = a^s b^t ..., vorrebbe dire che v^2 = a^s b^t a^s b^t rompe il vincolo posizionale delle a prima 	delle b. Quindi, tornando a v formata da sole a, consideriamo la stringa pompata... (uguale al caso 1).
+	ii) nel caso in cui x != lambda avremmo che x è formata da sole b. questo perche, prendendo la stringa pompata ... avremmo che se x = a^s b^t ..., vorrebbe dire che x^2 = a^s b^t a^s b^t rompe il vincolo posizionale delle a prima 	delle b. Quindi, tornando a v formata da sole b, consideriamo la stringa pompata... (uguale al caso 2).
+	iii) nel caso in cui v != lambda e x != lambda avremmo che vwx = a^s b^t con 2 <= s+t <= p , 1 <= s <= p,  1 <= t <= p.
+	Considerando la stringa pompata uv2wx2y = a^p+s b^p+t c^p avremmo che il numero delle b è maggiore di quello delle c e quindi uv2wx2y non app. ad L.
+	
+	
+5) in breve: 
+	In questo caso abbiamo, per la 2) del pumping lemma, abbiamo tre ulteriori sottocasi:
+	i) v != lambda e x = lambda
+	ii) v = lambda e x != lambda
+	iii) v != lambda e x != lambda
+	
+	i) nel caso in cui v != lambda avremmo che v è formata da sole b. questo perche, prendendo la stringa pompata ... avremmo che se v = b^s c^t ..., vorrebbe dire che v^2 = b^s c^t b^s c^t rompe il vincolo posizionale delle b prima 	delle c. Quindi, tornando a v formata da sole b, consideriamo la stringa pompata... (uguale al caso 2).
+	ii) nel caso in cui x != lambda avremmo che x è formata da sole c. questo perche, prendendo la stringa pompata ... avremmo che se x = b^s c^t ..., vorrebbe dire che x^2 = b^s c^t b^s c^t rompe il vincolo posizionale delle b prima 	delle c. Quindi, tornando a v formata da sole c, consideriamo la stringa pompata... (uguale al caso 3).
+	iii) nel caso in cui v != lambda e x != lambda avremmo che vwx = b^s c^t con 2 <= s+t <= p , 1 <= s <= p,  1 <= t <= p.
+	Considerando la stringa pompata uv0wx0y= a^p b^p-s c^p-t avremmo che il numero delle a è maggiore di quello delle c e delle b e quindi uv2wx2y non app. ad L.
+
+In questo modo la 3) del pumping lemma non vale per nessun caso. Ciò è un assurdo dato dal fatto che abbiamo supposto L libero da contesto. Di conseguenza L non è un linguaggio libero da contesto.
+
+
+Stabilire se il seguente linguaggio
+L={w€X*| w=a^(n^3), n > 0}
+è libero da contesto 
+Giustificare formalmente la risposta.
+
+ Pumping lemma definizione...
+Consideriamo la stringa z = a^(p^3)
+Quindi per la 3) del pumping lemma avremmo che la stringa pompata uv2wx2y = a^(p^3 + s), con 1 <= s <= p
+Ma di conseguenza avremmo che:
+|uv2wx2y| <= |uvwxy| + |vwx| <= p^3 + p < (p + 1)^3 
+In questo modo avremmo che la stringa pompata uv2wx2y non appartiene ad L, in quanto la prima stringa pompata € L è lunga (p+1)^3 > p^3+p.  Ciò è un assurdo dato dall'aver considerato L libero da contesto. 
+Di conseguenza L non è libero da contesto.
+
+

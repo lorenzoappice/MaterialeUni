@@ -1,0 +1,89 @@
+Passo base:
+w= abb compreso L
+Passo induttivo: se w compreso L allora anche awbb compreso L
+aSbb
+Regole di produzione:
+S->abb | aSbb
+S=> aSbb =>aaSbbbb=> aaabbbbbb
+
+Es num 2 )
+Passo base: b
+L={b,abbb,aabbbbb,aaabbbbbbb,aaaabbbbbbbbb}
+a^n b b^2n
+𝑃 = 𝑆 → 𝑏 | 𝑎𝑆𝑏𝑏}
+
+Es num 3)
+a^n b^n b^m c^m 
+V= S,A,B
+P= 
+abbc, aabbbc,aaabbbbc
+abbbcc,abbbbccc
+aabbbbcc
+S->AB
+A-> aAb | ab
+B-> bBc | bc
+
+Es num 4)
+L={ b,ab,aabbbbb,aaabbbbbbb,...}
+passo base: b compreso l
+passo induttivo: se b compreso l allora anche wb compreso l
+S-> AB
+A-> aA | vuoto
+B-> bbB | b
+
+Es num 5 )
+L= abbbc,aabbbc,aaabbbbc 
+a^i b^i b^z b^j c^j        z,i,j>0
+S,A,B,C
+S-> ABC
+A-> ab | aAb
+B-> b | bB
+C-> bc| bCc
+
+ABC => abBC => abbC => abbbc
+
+Es num 6) 
+L= {aa b^n a | n>0 }
+Pb : aaba
+P induttivo se aaba compreso L allora anche aabwa compreso L
+V= {S,B}
+S=> aaBa
+B=> bB | b 
+
+Es num 7)
+n>0, m>0, n>m 
+L={a^n a^z b^m} i vincoli implicano che ci devono essere più a di b 
+per cui z>0
+Passo base : aab
+L={aab,aaab,aaaab,...}
+S=> AB
+A=> aA | a
+B=> aBb | ab
+
+Es num 8)
+abc,aabcc,aaabccc,...
+abbc,abbbc,....
+aabbcc,aaabbbccc,...
+Passo base: abc compreso L
+S=> aBc | aSc
+B=> bB | b 
+
+S=> aBc => abBc
+S=> aSc=> aaScc=> aaaBccc=> aaabBccc=> aaabbBccc=> aaabbbccc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
