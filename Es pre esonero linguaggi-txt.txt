@@ -96,6 +96,34 @@ libero?
 7) L={w€X*| w=a^k b^i c^j, k=i+j, i>0, j>0}
 8) L={w€X*| w=a^i b^j c^k, k=i+j, i>0, j>0}
 
+Es1 esonero anno scorso)
+𝐿 = {𝑤 ∈ 𝑋* | w = 𝑎^𝑖 𝑏^k 𝑐^𝑗, 𝑘 = 2𝑖 + 𝑗, 𝑖 ≥ 0,𝑗 ≥ 0}
+{(a,b,c) , {S,A,B} , S , {P= 
+L={ lambda, ab, c, 
+
+Es3 esonero anno scorso)
+G=(X,V,S,P)
+X={a,b} V={S} P) { S->ab | ba | aSb | bSa | SS}
+L= { w comp. X* | w= 
+
+
+
+Es2 esonero anno scorso)
+L= { w comp. X* | w = a^i b^j, i=j^3, i>0}
+Supponiamo per assurdo che il linguaggio sia libero da contesto con il pumping lemma,
+consideriamo la stringa z= uvwxy = a^p b^(p^3)
+1)vwx = a^s, con 1<=s <=p 
+2)vwx = b^s, con 1<=s <=p 
+3)vwx = a^s b^t, con 1<=s+t <=p, 1<=s<=p , 1<=t<=p 
+ in breve il punto 1 pompiamo la stringa di base ,
+
+
+
+
+
+
+
+
 
 
 
