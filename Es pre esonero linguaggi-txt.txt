@@ -73,7 +73,28 @@ S=> aSc=> aaScc=> aaaBccc=> aaabBccc=> aaabbBccc=> aaabbbccc
 
 
 
+Es cap 4)
 
+1) L={w€X*| w=a^nb^m, m>n>0}
+{(a,b) , {S,A,B} , S , {P=S-> AB, A-> ab|aAb  , B-> b | bB}
+L={abb,aabbb,aaabbbb,aaaabbbbb}= {a^n b^n b^m}
+Il linguaggio è libero perchè è generato da una grammatica G liberla , L(G) = L 
+
+2) L={w€X*| w=b^n, n>0}
+{b , S, S , P=S-> b | bS}
+Il linguaggio è libero dato che è possibile generarlo con una grammatica G libera, L(G) = L
+G è libero poichè la produzione v->w è rispettata poichè v sono solo non terminali e non sono lambda.
+
+3) L={w€X*| w=a^n b^m c^n, m>n>0}= {a^n b^n b^m c ^n }= abbc,aabbbcc
+non è libero : pumping lemma
+
+4) L={w€X*| w=b^m a^n c^n, m>0, n>0}
+libero? 
+5) L={w€X*| w=a^n b^n c^m, m>0, n>0}
+libero?
+6) L={w€X*| w=a^i b^k c^j, k=i+j, i>0, j>0}
+7) L={w€X*| w=a^k b^i c^j, k=i+j, i>0, j>0}
+8) L={w€X*| w=a^i b^j c^k, k=i+j, i>0, j>0}
 
 
 
