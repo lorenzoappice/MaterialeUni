@@ -1,0 +1,59 @@
+ALTER TABLE aziende ADD COLUMN civico int AFTER CAP;  -- Mi sono accorto che mancavano i civici nelle aziende leggendo il primo punto alla traccia
+UPDATE aziende SET civico = 21
+WHERE idAzienda = '070126';
+UPDATE aziende SET civico = 22
+WHERE idAzienda = '000002';
+UPDATE aziende SET civico = 13
+WHERE idAzienda = '000003';
+
+SELECT nomeAzienda,civico FROM aziende WHERE civico > 15;
+SELECT nomeAzienda,annoFondazione FROM aziende WHERE annoFondazione < 1980;
+SELECT nomeAzienda FROM aziende WHERE annoFondazione BETWEEN 1980 AND 1998;
+SELECT codice,testo,categoria FROM inserzioni;
+SELECT * FROM insaz;
+-- PRODOTTO CARTESIANO  (ho dovuto modificare la consegna da qui perchè il prodotto cartesiano l'avevo fatto utilizzando il cross join, il quale è molto simile ma non era richiesto nell'esercizio, me ne sono accorto solo dopo)
+SELECT insaz.idInserzione,aziende.nomeAzienda,aziende.referente,aziende.telefono FROM insaz,aziende WHERE insaz.idAzienda = aziende.idAzienda; 
+SELECT inserzioni.codice,inserzioni.testo,inserzioni.categoria, aziende.nomeAzienda,aziende.referente,aziende.telefono FROM inserzioni,aziende,insaz WHERE insaz.idAzienda = aziende.idAzienda AND insaz.idInserzione = inserzioni.codice;
+SELECT pubblicazioni.codice,pubblicazioni.testo,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni,aziende AS elenco_aziende,insaz AS IA WHERE IA.idAzienda = elenco_aziende.idAzienda AND IA.idInserzione = pubblicazioni.codice;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni,aziende AS elenco_aziende,insaz AS IA WHERE IA.idAzienda = elenco_aziende.idAzienda AND IA.idInserzione = pubblicazioni.codice;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni,aziende AS elenco_aziende,insaz AS IA WHERE IA.idAzienda = elenco_aziende.idAzienda AND IA.idInserzione = pubblicazioni.codice AND elenco_aziende.capitaleSociale > 18000000;
+SELECT nome FROM privati;
+-- è stata modificata anche questo perchè nella consegna prima della modifica non prendevo tutti i nomi , ho risolto in questo modo.
+SELECT DISTINCT nome FROM redattori UNION
+SELECT DISTINCT nome FROM privati UNION
+SELECT DISTINCT nomeAzienda AS nome FROM aziende UNION
+SELECT DISTINCT nomeComitato AS nome FROM redazioni UNION
+SELECT DISTINCT nome FROM testate UNION
+SELECT DISTINCT idCategoria AS nome FROM categorie;
+
+-- Da 45-48 col NATURAL JOIN (anche questo ho dovuto modificare perchè avevo usato in moodo sbagliato il NATURAL JOIN)
+
+SELECT insaz.idInserzione,aziende.nomeAzienda,aziende.referente,aziende.telefono FROM insaz NATURAL JOIN aziende;
+SELECT inserzioni.codice,inserzioni.testo,inserzioni.categoria, aziende.nomeAzienda,aziende.referente,aziende.telefono FROM inserzioni NATURAL JOIN aziende NATURAL JOIN insaz WHERE insaz.idInserzione = inserzioni.codice;
+SELECT pubblicazioni.codice,pubblicazioni.testo,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni as pubblicazioni NATURAL JOIN aziende AS elenco_aziende NATURAL JOIN insaz AS IA WHERE IA.idInserzione = pubblicazioni.codice;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni NATURAL JOIN aziende AS elenco_aziende NATURAL JOIN insaz AS IA WHERE IA.idInserzione = pubblicazioni.codice;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni NATURAL JOIN aziende AS elenco_aziende NATURAL JOIN insaz AS IA WHERE elenco_aziende.capitaleSociale > 18000000 AND IA.idInserzione = pubblicazioni.codice;
+
+-- Da 45-48 col JOIN (anche questo ho dovuto modificare perchè avevo usato in moodo sbagliato il JOIN)
+SELECT insaz.idInserzione,aziende.nomeAzienda,aziende.referente,aziende.telefono FROM insaz JOIN aziende ON insaz.idAzienda = aziende.idAzienda;
+SELECT inserzioni.codice,inserzioni.testo,inserzioni.categoria, aziende.nomeAzienda,aziende.referente,aziende.telefono FROM inserzioni JOIN aziende  JOIN insaz ON insaz.idInserzione = inserzioni.codice AND insaz.idAzienda = aziende.idAzienda;
+SELECT pubblicazioni.codice,pubblicazioni.testo,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni as pubblicazioni JOIN aziende AS elenco_aziende JOIN insaz AS IA ON IA.idInserzione = pubblicazioni.codice AND IA.idAzienda = elenco_aziende.idAzienda;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni JOIN aziende AS elenco_aziende  JOIN insaz AS IA ON IA.idAzienda = elenco_aziende.idAzienda AND IA.idInserzione = pubblicazioni.codice;
+SELECT pubblicazioni.codice AS codice_articolo,pubblicazioni.testo AS descrzione,pubblicazioni.categoria, elenco_aziende.nomeAzienda,elenco_aziende.referente,elenco_aziende.telefono FROM inserzioni AS pubblicazioni JOIN aziende AS elenco_aziende JOIN insaz AS IA ON elenco_aziende.capitaleSociale > 18000000 AND IA.idInserzione = pubblicazioni.codice;
+
+SELECT insaz.idInserzione,aziende.nomeAzienda,aziende.referente,aziende.telefono FROM insaz,aziende WHERE insaz.idAzienda = aziende.idAzienda ORDER BY aziende.telefono ASC; 
+SELECT insaz.idInserzione,aziende.nomeAzienda,aziende.referente,aziende.telefono FROM insaz,aziende WHERE insaz.idAzienda = aziende.idAzienda ORDER BY aziende.telefono DESC;
+
+SELECT aziende.*,citta.CAP FROM aziende,citta WHERE aziende.CAP = citta.CAP;
+
+SELECT aziende.*,citta.citta FROM aziende, citta WHERE aziende.CAP = citta.CAP;
+SELECT privati.*,citta.CAP FROM privati,citta WHERE privati.CAP = citta.CAP;
+
+SELECT privati.*,citta.* FROM privati,citta WHERE privati.CAP = citta.CAP;
+-- visualizzare l'elenco delle città e per ogni città, nome dell'azienda che ha sede nella città,
+--  nome e cognome dei privati che risiedono nella città (fare attenzione a non visualizzare due volte le stesse informazioni);
+    
+
+-- visualizzare i privati che hanno un cognome iniziante con la lettera P oppure con la lettera A, indicando i codici delle inserzioni che questi hanno fatto
+SELECT privati.nome,privati.cognome,privati.idPrivato,inspriv.idInserzione FROM privati  NATURAL JOIN inspriv
+WHERE privati.cognome LIKE 'P%' OR privati.cognome LIKE 'A%';

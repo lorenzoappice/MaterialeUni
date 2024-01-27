@@ -1,0 +1,126 @@
+
+    void move_min_max() {
+        T min = find_min();
+        T max = find_max();
+        Nodo<T>* corrente = testa;
+        Nodo<T>* precedente_min = nullptr;
+        Nodo<T>* minNode = nullptr;
+        Nodo<T>* precedente_max = nullptr;
+        Nodo<T>* maxNode = nullptr;
+
+        while (corrente) {
+            if (corrente->dato == min) {
+                minNode = corrente;
+            } else if (corrente->dato == max) {
+                maxNode = corrente;
+            }
+            precedente_min = corrente;
+            corrente = corrente->next;
+        }
+        // Spostamento del minimo all'inizio
+        if (minNode && minNode != testa) {
+            precedente_min->next = minNode->next;
+            minNode->next = testa;
+            testa = minNode;
+        }
+        // Spostamento del massimo alla fine
+        if (maxNode) {
+            precedente_max = precedente_min; // Aggiornamento del precedente per il massimo
+            while (precedente_max->next) {
+                precedente_max = precedente_max->next;
+            }
+            if (maxNode != precedente_max) {
+                precedente_min->next = maxNode->next;
+                precedente_max->next = maxNode;
+                maxNode->next = nullptr;
+            }
+        }
+    }
+
+    T find_min() const {
+        Nodo<T>* corrente = testa;
+        T min = corrente->dato;
+        while (corrente) {
+            if (corrente->dato >= min) {
+                min = corrente->dato;
+            }
+            corrente = corrente->next;
+        }
+        return min;
+    }
+
+    T find_max() const {
+        Nodo<T>* corrente = testa;
+        T max= corrente->dato;
+        while (corrente) {
+            if (corrente->dato <= max) {
+                max = corrente->dato;
+            }
+            corrente = corrente->next;
+        }
+        return max;
+    }
+
+
+
+    void move_min_max() {
+        if (!testa) {
+            // La lista è vuota, non c'è nulla da spostare
+            return;
+        }
+        Nodo<T>* corrente = testa;
+        Nodo<T>* precedente_min = nullptr;
+        Nodo<T>* minNode = nullptr;
+        Nodo<T>* precedente_max = nullptr;
+        Nodo<T>* maxNode = nullptr;
+
+        // Inizializzazione minimo e massimo con il primo elemento della lista
+        T min = testa->dato;
+        T max = testa->dato;
+
+        while (corrente) {
+            if (corrente->dato < min) {
+                min = corrente->dato;
+                minNode = corrente;
+                precedente_min = precedente_max; // Aggiornamento del precedente per il minimo
+            } else if (corrente->dato >= max) {
+                max = corrente->dato;
+                maxNode = corrente;
+                precedente_max = corrente; // Aggiornamento del precedente per il massimo
+            }
+            corrente = corrente->next;
+        }
+
+        // Spostamento del minimo all'inizio
+        if (minNode && minNode != testa) {
+            if (precedente_min) {
+                precedente_min->next = minNode->next;
+                minNode->next = testa;
+                testa = minNode;
+            } else {
+                // Il minimo è già in testa
+            }
+        }
+
+        // Spostamento del massimo alla fine
+        if (maxNode) {
+            if (maxNode != precedente_max) {
+                precedente_max->next = maxNode->next;
+                corrente = testa;
+                while (corrente->next) {
+                    corrente = corrente->next;
+                }
+                corrente->next = maxNode;
+                maxNode->next = nullptr;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
